@@ -25,7 +25,7 @@ const Nav_Bar = () => {
 
     <div className="flex items-center gap-3">
       <p className="italic whitespace-nowrap font-semibold text-[16px]">
-        Book your perfect stay with us.
+        Book your perfect stay with us. Welcome to Sudarshan Acro Resort.
       </p>
 
       {/* Book and View Button */}
