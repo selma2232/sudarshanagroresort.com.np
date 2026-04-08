@@ -1,129 +1,91 @@
-import { Link } from "react-router-dom";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, PhoneCall } from "lucide-react";
+
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-[#0a7a0a] to-[#034d03] font-sans text-white">
+    <footer className="bg-gradient-to-r from-[#033a03] via-[#055d05] to-[#022802] text-gray-200">
 
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+      <div className="max-w-7xl mx-auto px-10 py-16">
 
-          {/* ABOUT */} 
-     <div> 
-       <h1 className="text-2xl font-semibold mb-4"> 
-         Sudarshan Agro Resort 
-       </h1> 
- 
-       <p className="text-sm leading-6 text-green-100"> 
-         Enjoy your recreational time with Sudarshan Park and Resort in a Nepali style. 
-         We offer you the best hospitality for your golden memories. 
-       </p> 
+        {/* GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
 
+          {/* ABOUT */}
+          <div className="max-w-[320px]">
+            <h2 className="text-white text-lg font-semibold mb-5">
+              Sudarshan Agro Resort
+            </h2>
 
-              {/* SOCIALS */} 
-       <div className="flex gap-5 mt-6"> 
-         <a href="https://facebook.com" target="_blank"> 
-           <Facebook size={20} className="hover:opacity-70 transition" /> 
-         </a> 
-         <a href="https://instagram.com" target="_blank"> 
-           <Instagram size={20} className="hover:opacity-70 transition" /> 
-         </a> 
-         <a href="https://linkedin.com" target="_blank"> 
-           <Linkedin size={20} className="hover:opacity-70 transition" /> 
-         </a> 
-       </div> 
-     </div> 
+            <p className="text-sm text-gray-300 leading-7">
+              Subscribe Easy Tutorials Youtube channel to watch more videos on website development 
+              and Press the bell icon to get immediate notification of latest videos.
+            </p>
+          </div>
 
+          {/* OFFICE */}
+          <div>
+            <h3 className="text-white text-sm font-semibold mb-5">Contact</h3>
 
-          {/* QUICK LINKS */} 
-     <div> 
-       <h2 className="text-lg font-semibold mb-4">Quick Links</h2> 
- 
-       <ul className="space-y-3 text-sm text-green-100"> 
-         <li><Link to="/gallery" className="hover:text-white transition hover:pl-1">Gallery</Link></li> 
-         <li><Link to="/contact" className="hover:text-white transition hover:pl-1">Contact</Link></li> 
-         <li><Link to="/services" className="hover:text-white transition hover:pl-1">Services</Link></li> 
-         <li><Link to="/rooms" className="hover:text-white transition hover:pl-1">Rooms</Link></li> 
-       </ul> 
-     </div> 
+            <p className="text-sm text-gray-300 leading-7">
+                 Lalbhitti, Belbari-2, Morang, Nepal<br />
+               +977-9852020058  <br />
+                      booking@sudarshanagroresort.com.np <br />
+             
+            </p>
+          </div>
 
+          {/* LINKS */}
+          <div>
+            <h3 className="text-white text-sm font-semibold mb-5">Quick Links</h3>
 
-         {/* CONTACT */} 
-     <div> 
-       <h2 className="text-lg font-semibold mb-4">Get in Touch</h2> 
- 
-       <div className="space-y-4 text-sm text-green-100"> 
- 
-         <div className="flex items-start gap-3"> 
-           <MapPin size={18} className="mt-1" /> 
-           <a href="#" className="hover:text-white transition"> 
-             Lalbhitti, Belbari-2, Morang, Nepal 
-           </a> 
-         </div> 
- 
-         <div className="flex items-center gap-3"> 
-           <PhoneCall size={18} /> 
-           <a href="tel:+9779852020058" className="hover:text-white transition"> 
-             +977-9852020058 
-           </a> 
-         </div> 
- 
-         <div className="flex items-center gap-3"> 
-           <Mail size={18} /> 
-           <a 
-             href="mailto:booking@sudarshanagroresort.com.np" 
-             className="hover:text-white transition" 
-           > 
-             booking@sudarshanagroresort.com.np 
-           </a> 
-         </div> 
- 
-       </div> 
-     </div> 
+            <ul className="space-y-3 text-sm text-gray-300">
+              <li className="hover:text-white cursor-pointer">Home</li>
+              <li className="hover:text-white cursor-pointer">Services</li>
+              <li className="hover:text-white cursor-pointer">About</li>
+              <li className="hover:text-white cursor-pointer">Rooms</li>
+              <li className="hover:text-white cursor-pointer">Contact</li>
+            </ul>
+          </div>
 
+          {/* NEWSLETTER */}
+          <div className="max-w-[260px]">
+            <h3 className="text-white text-sm font-semibold mb-5">Newsletter</h3>
 
-{/* NEWSLETTER */} 
-     <div>
-  <h2 className="text-lg font-semibold mb-4">Stay Updated</h2>
+            <div className="flex items-center border-b border-gray-400 pb-2">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="bg-transparent flex-1 text-sm outline-none placeholder-gray-400"
+              />
+              <button className="text-white text-lg ml-2">→</button>
+            </div>
 
-  <p className="text-sm text-green-100 mb-4">
-    Subscribe to get offers, updates and resort news.
-  </p>
+            {/* SOCIALS */}
+            <div className="flex gap-4 mt-6">
+              {[Facebook, Instagram, Linkedin].map((Icon, i) => (
+                <div
+                  key={i}
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-white text-black hover:bg-[#f0c419] transition"
+                >
+                  <Icon size={16} />
+                </div>
+              ))}
+            </div>
+          </div>
 
-  {/* Newsletter */}
- 
-  
-<div className="flex w-full max-w-[260px] mb-5 bg-white rounded-lg overflow-hidden shadow-sm">
-  <input
-    type="email"
-    placeholder="Your email"
-    className="flex-1 px-3 py-3 text-black text-sm outline-none"
-  />
-  <button className="bg-[#f0c419] px-6 text-sm font-semibold text-black hover:opacity-90 transition">
-    Subscribe
-  </button>
-</div>
-  
-  </div>
-  </div>
-  
- </div>
+        </div>
+      </div>
+  <div className="border-t border-white/10"></div>
 
-  
-  
-  
-  
- 
- 
- {/* BOTTOM */} 
- <div className="bg-[#141414]"> 
-   <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-sm text-gray-300"> 
- 
-     <p> 
-       © 2025 Sudarshan Agro Resort. All rights reserved. 
-     </p> 
- 
-     <p> 
+      {/* BOTTOM */}
+      <div className="bg-[#062e06]">
+        <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-gray-400">
+
+          <p>
+            © 2025 Sudarshan Agro Resort. All rights reserved.
+          </p>
+
+          <p> 
        Technology Partner: 
        <a 
          href="https://sriyog.com/" 
@@ -133,13 +95,12 @@ const Footer = () => {
          SRIYOG 
        </a> 
      </p> 
- 
-   </div> 
- 
-  </div> 
 
+        </div>
+      </div>
     </footer>
   );
 };
 
 export default Footer;
+

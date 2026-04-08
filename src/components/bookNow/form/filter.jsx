@@ -1,92 +1,75 @@
 import React, { useState, useEffect, useRef } from "react";
-import style from "./filter.module.css"; // use your own CSS
+import style from "./filter.module.css";
 import { ChevronDown } from "lucide-react";
 
-const FilterDropdown = ({ label, id, options, form, setForm, errors, setErrors, astric }) => {
-  const [search, setSearch] = useState("");
+const FilterDropdown = ({
+  label,
+  id,
+  options = [],
+  form,
+  setForm,
+  errors,
+  setErrors,
+  astric
+}) => {
+
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  //    const selectedOption = options.find(opt => opt.label === form[id]);
-  //    const selectedOption = options.find(opt => opt.label === form[id]);
-  const filteredOptions = options.filter(opt =>
-    opt.label.toLowerCase().includes(search.toLowerCase())
-
-  );
-
+  // ✅ CLOSE WHEN CLICK OUTSIDE
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setOpen(false);
       }
-    }
+    };
 
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
     <div className={style.dropdownContainer} ref={dropdownRef}>
-      <div className={style.label_and_span}>
-        <label htmlFor={id} className={style.label}>{label}<span className={style.astric}>{astric}</span> </label>
-        {errors[id] && <span className={style.error}>This field is required. You have to enter something before
-          submitting.</span>}
-      </div>
 
+      {/* LABEL */}
+      <label className={style.label}>
+        {label}
+        <span>{astric}</span>
+      </label>
 
+      {/* BOX */}
       <div
-        className={`${style.dropdownBox} ${open ? style.activeDropdown : ""}`}
-        onClick={() => setOpen(!open)}
+        className={style.dropdownBox}
+        onClick={() => setOpen(prev => !prev)}   // ✅ FIXED toggle
       >
-        {form[id] ? (
-          <span
-            style={{
-              background: options.find(opt => opt.label === form[id])?.color,
-              padding: "0px 6px",
-              borderRadius: "4px",
-              display: "inline-block"
-            }}
-          >
-            {form[id]}
-          </span>
-        ) : ("")}
-        <span className={style.dropdownIcon}><ChevronDown /> </span>
+        {form?.[id] ? (
+          <span>{form[id]}</span>
+        ) : (
+          <span className={style.placeholder}>Select...</span>
+        )}
+
+        <ChevronDown size={18} />
       </div>
 
+      {/* LIST */}
       {open && (
         <div className={style.dropdownList}>
-          <input
-            className={style.searchInput}
-            type="text"
-            placeholder="Find an option"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-
-          <ul className={style.optionsList}>
-            {filteredOptions.map((opt, index) => (
-              <div className={style.li_drop_for_hover}  key={index} onClick={() => { setForm({ ...form, [id]: opt.label }); setErrors({ ...errors, [id]: false }); setOpen(false); setSearch(""); }}> <li
-
-                className={style.listofdrop_down}
-                style={{ background: opt.color }}
-
-              >
-                {opt.label}
-              </li></div>
-            ))}
-
-
-            {filteredOptions.length === 0 && (
-              <li className={style.noOption}>No match found</li>
-            )}
-          </ul>
+          {options.map((opt, index) => (
+            <div
+              key={index}
+              className={style.dropdownItem}
+              onClick={(e) => {
+                e.stopPropagation(); // ✅ PREVENT REOPEN BUG
+                setForm({ ...form, [id]: opt.label });
+                setErrors?.({ ...errors, [id]: false });
+                setOpen(false); // ✅ CLOSE AFTER SELECT
+              }}
+            >
+              {opt.label}
+            </div>
+          ))}
         </div>
       )}
-
-
     </div>
   );
 };
