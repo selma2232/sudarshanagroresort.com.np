@@ -7,11 +7,11 @@ import Footer from '../Footer.jsx'
 import EnjoyAgro from '../EnjoyAgro.jsx'
 import Additional_Features from '../services/additionalFeatures/additional_feature.jsx'
 import SeoHelmet from '../seoHelmet.jsx'
- 
+ import styles from "./services.module.css";
 const Services = () => {
  
   return (
-    <div>
+    <div className={styles.container}>
          <SeoHelmet
         title="Services | Sudarshan Resort"
         description="Explore the wide range of services at Sudarshan Resort including luxurious accommodations, agro experiences, modern amenities, and special offerings."

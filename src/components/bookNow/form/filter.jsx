@@ -16,7 +16,7 @@ const FilterDropdown = ({
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  // ✅ CLOSE WHEN CLICK OUTSIDE
+ 
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -40,7 +40,7 @@ const FilterDropdown = ({
       {/* BOX */}
       <div
         className={style.dropdownBox}
-        onClick={() => setOpen(prev => !prev)}   // ✅ FIXED toggle
+        onClick={() => setOpen(prev => !prev)}  
       >
         {form?.[id] ? (
           <span>{form[id]}</span>

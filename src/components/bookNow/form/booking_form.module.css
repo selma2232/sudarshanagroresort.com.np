@@ -67,8 +67,8 @@
 
 .textarea {
   width: 100%;
-  min-height: 80px;   /* 🔥 perfect balance */
-  max-height: 140px;  /* prevents it from getting huge */
+  min-height: 80px;  
+  max-height: 140px; 
 
   padding: 10px 12px;
 
@@ -78,7 +78,7 @@
   font-size: 14px;
   background: #f9fafb;
 
-  resize: vertical;   /* ✅ user can expand if needed */
+  resize: vertical;  
 }
 
 .textarea:focus {

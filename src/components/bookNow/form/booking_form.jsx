@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 import style from "./booking_form.module.css";
 import FilterDropdown from "./filter";
 
@@ -22,6 +23,10 @@ const Booking_form = () => {
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    emailjs.init("4ufjEe2FuYXd9ArD0"); 
+  }, []);
 
   const stayDuration = [
     { label: "1 Day" },
@@ -53,9 +58,65 @@ const Booking_form = () => {
     { label: "No" },
   ];
 
-  const handleSubmit = (e) => {
+  // ✅ SIMPLE VALIDATION
+  const validate = () => {
+    let newErrors = {};
+
+    if (!form.fullname) newErrors.fullname = true;
+    if (!form.phone) newErrors.phone = true;
+    if (!form.arrival_date) newErrors.arrival_date = true;
+    if (!form.room_type) newErrors.room_type = true;
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  //  SUBMIT (FIXED)
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
+
+    if (!validate()) return;
+
+    try {
+      await emailjs.send(
+        "service_v4mqblp",   
+        "template_ri2ns9r",  
+        {
+          fullname: form.fullname,
+          phone: form.phone,
+          number: form.number,
+          room_type: form.room_type,
+          arrival_date: form.arrival_date,
+          message: form.message || "No message"
+        }
+      );
+
+      setIsSubmitted(true);
+
+      // reset form
+      setForm({
+        fullname: "",
+        gender: "",
+        country: "",
+        state: "",
+        city: "",
+        phone: "",
+        number: "",
+        room_type: "",
+        room_quantity: "1",
+        bed_type: "",
+        arrival_date: "",
+        stay: "1 Day",
+        travel_assistance: "",
+        message: ""
+      });
+
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      console.log("STATUS:", error.status);
+      console.log("TEXT:", error.text);
+      alert("Failed to send booking ");
+    }
   };
 
   return (
@@ -72,12 +133,10 @@ const Booking_form = () => {
         <form className={style.form} onSubmit={handleSubmit}>
           <div className={style.gridForm}>
 
-            {/* FULL NAME */}
             <div className={style.field}>
               <label className={style.label}>Full Name *</label>
               <input
                 className={style.input}
-                placeholder="Enter your name"
                 value={form.fullname}
                 onChange={(e) =>
                   setForm({ ...form, fullname: e.target.value })
@@ -85,7 +144,6 @@ const Booking_form = () => {
               />
             </div>
 
-            {/* GENDER */}
             <div className={style.field}>
               <FilterDropdown
                 label="Gender"
@@ -98,7 +156,6 @@ const Booking_form = () => {
               />
             </div>
 
-            {/* COUNTRY */}
             <div className={style.field}>
               <FilterDropdown
                 label="Country"
@@ -111,7 +168,6 @@ const Booking_form = () => {
               />
             </div>
 
-            {/* STATE */}
             <div className={style.field}>
               <label className={style.label}>State *</label>
               <input
@@ -123,7 +179,6 @@ const Booking_form = () => {
               />
             </div>
 
-            {/* CITY */}
             <div className={style.field}>
               <label className={style.label}>City *</label>
               <input
@@ -135,7 +190,6 @@ const Booking_form = () => {
               />
             </div>
 
-            {/* PHONE */}
             <div className={style.field}>
               <label className={style.label}>Phone *</label>
               <input
@@ -147,7 +201,6 @@ const Booking_form = () => {
               />
             </div>
 
-            {/* GUESTS */}
             <div className={style.field}>
               <label className={style.label}>Number of Guests *</label>
               <input
@@ -159,7 +212,6 @@ const Booking_form = () => {
               />
             </div>
 
-            {/* ROOM TYPE */}
             <div className={style.field}>
               <FilterDropdown
                 label="Room Type"
@@ -172,7 +224,6 @@ const Booking_form = () => {
               />
             </div>
 
-            {/* ROOM QUANTITY */}
             <div className={style.field}>
               <FilterDropdown
                 label="Room Quantity"
@@ -185,7 +236,6 @@ const Booking_form = () => {
               />
             </div>
 
-            {/* BED TYPE */}
             <div className={style.field}>
               <FilterDropdown
                 label="Bed Type"
@@ -198,7 +248,6 @@ const Booking_form = () => {
               />
             </div>
 
-            {/* ARRIVAL */}
             <div className={style.field}>
               <label className={style.label}>Arrival Date *</label>
               <input
@@ -211,7 +260,6 @@ const Booking_form = () => {
               />
             </div>
 
-            {/* STAY */}
             <div className={style.field}>
               <FilterDropdown
                 label="Stay Duration"
@@ -224,7 +272,6 @@ const Booking_form = () => {
               />
             </div>
 
-            {/* MESSAGE */}
             <div className={style.full}>
               <label className={style.label}>Message</label>
               <textarea
@@ -236,7 +283,6 @@ const Booking_form = () => {
               />
             </div>
 
-            {/* BUTTON */}
             <button type="submit" className={style.button}>
               BOOK
             </button>
@@ -246,7 +292,7 @@ const Booking_form = () => {
 
         {isSubmitted && (
           <div style={{ textAlign: "center", marginTop: "10px" }}>
-            ✅ Form submitted
+         Booking sent successfully
           </div>
         )}
 
