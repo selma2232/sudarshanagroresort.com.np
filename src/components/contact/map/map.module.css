@@ -1,0 +1,26 @@
+.mapContainer {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    max-width: 1400px;
+}
+
+.mapIframe {
+    border: 0;
+    width: 100%;
+    height: 100%;
+    
+}
+@media (max-width: 1024px) {
+    .mapContainer {
+        height: 350px;
+        max-width: 1000px;
+    }
+}
+/* Mobile*/
+@media (max-width: 768px) {
+    .mapContainer {
+        height: 350px;
+        max-width: 100%;
+    }
+}

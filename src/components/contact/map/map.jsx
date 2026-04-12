@@ -1,12 +1,11 @@
-
+import style from './map.module.css';
 
 const Map = () => {
   return (
-    <div>
-       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.6975542742957!2d87.40568227602424!3d26.6581644709823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ef658a3db38a5d%3A0xbfd3187bf701d864!2sSudarshan%20Resort!5e0!3m2!1sen!2snp!4v1765362986957!5m2!1sen!2snp" 
-           width="1000" 
-           height="450" 
-           style={{ border: 0 }}
+    <div className={style.mapContainer}>
+       <iframe
+           className={style.mapIframe}
+           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.6975542742957!2d87.40568227602424!3d26.6581644709823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ef658a3db38a5d%3A0xbfd3187bf701d864!2sSudarshan%20Resort!5e0!3m2!1sen!2snp!4v1765362986957!5m2!1sen!2snp"
            allowFullScreen=""
            loading="lazy"
            referrerPolicy="no-referrer-when-downgrade">

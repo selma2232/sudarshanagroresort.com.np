@@ -5,11 +5,12 @@ import Herosection from '../herosection.jsx'
 import Allcards from './cardWrapper/allCards.jsx'
 import Footer from '../Footer.jsx'
 import SeoHelmet from '../seoHelmet.jsx'
+import style from './gallery.module.css'
  
 const Gallery = () => {
   
   return (
-    <div>
+    <div className={style.gallery}>
          <SeoHelmet
         title="Gallery | Sudarshan Resort"
         description="Explore the gallery of Sudarshan Resort showcasing luxurious rooms, beautiful surroundings, modern facilities, and memorable experiences."

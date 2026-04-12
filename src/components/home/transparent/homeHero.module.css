@@ -82,3 +82,60 @@
     opacity: 0;
   }
 }
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .sudarshan_main_container {
+    height: 60vh;
+  }
+  .topcontainer {
+    left: 15%;
+    top: 40%;
+  }
+  .comfort, .typing_text, .for_your_vacation {
+    font-size: 45px;
+  }
+  .cursor {
+    font-size: 45px;
+  }
+  .top {
+    font-size: 17px;
+  }
+  .book_now_btn {
+    font-size: 14px;
+    padding: 12px 30px;
+  }
+  .h1_Link_btn_wrapper {
+    gap: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .sudarshan_main_container {
+    height: 50vh;
+  }
+  .topcontainer {
+    left: 10%;
+    top: 35%;
+  }
+  .comfort, .typing_text, .for_your_vacation {
+    font-size: 30px;
+  }
+  .cursor {
+    font-size: 30px;
+  }
+  .top {
+    font-size: 14px;
+  }
+  .book_now_btn {
+    font-size: 12px;
+    padding: 10px 20px;
+  }
+  .h1_Link_btn_wrapper {
+    gap: 15px;
+  }
+  .typing_text {
+    margin-left: 5px;
+  }
+}

@@ -6,8 +6,8 @@ import { Mail, MapPin, PhoneCall } from 'lucide-react'
 const Contacts = () => {
   return (
     <div className={style.containerallwrap}>
-        <div>
-        <Map/>
+        <div className={style.mapWrapper}>
+          <Map/>
         </div>
      <div className={style.contentWrapper}>
         <div className={style.sudarshanresort_header_line_wrapper}>

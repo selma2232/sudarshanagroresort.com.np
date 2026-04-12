@@ -43,3 +43,9 @@
     object-fit: cover;
     margin-bottom: 12px;
 }
+@media (max-width:768px) {
+.services{
+    grid-template-columns: repeat(1, 1fr);
+  
+}
+}

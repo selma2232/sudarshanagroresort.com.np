@@ -1,19 +1,27 @@
 
 .containerallwrap{
     display: flex;
-    /* justify-content: flex-end; */
-    align-items: center;
+    align-items: flex-start;
     gap: 40px;
-    padding:100px 21px;;
-    margin-left: 50px;
-    
-    /* width: 100%; */
-    /* background-color: red; */
+    padding:100px 21px;
+    margin-left: 20px;
+}
+.mapWrapper {
+    flex: 2;
+    min-width: 520px;
 }
 .contentWrapper{
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 50px;
+}
+
+@media (max-width: 1024px) {
+    .mapWrapper {
+        min-width: 100%;
+        width: 100%;
+    }
 }
 .sudarshanresort_header_line_wrapper{
     /* background-color: red; */
@@ -46,4 +54,48 @@
     max-width: 700px;
     border-bottom: 1px solid #D4D4D4;
   
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .containerallwrap {
+        gap: 30px;
+        padding: 80px 15px;
+        margin-left: 30px;
+    }
+    .contentWrapper {
+        gap: 40px;
+    }
+    .h2 {
+        font-size: 18px;
+    }
+    .icon_and_p_wrapper p {
+        font-size: 15px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .containerallwrap {
+        flex-direction: column;
+        gap: 20px;
+        padding: 60px 10px;
+        margin-left: 0;
+        align-items: flex-start;
+    }
+    .contentWrapper {
+        gap: 30px;
+    }
+    .h2 {
+        font-size: 16px;
+    }
+    .icon_and_p_wrapper {
+        gap: 8px;
+    }
+    .icon_and_p_wrapper p {
+        font-size: 14px;
+    }
+    .line {
+        max-width: 100%;
+    }
 }

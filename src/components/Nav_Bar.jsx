@@ -17,45 +17,6 @@ const Nav_Bar = () => {
 
   return (
     <>
-      {/* TOP GREEN BAR */}
-{showTopBar && (
-  <div className="w-full bg-[#3d7703] h-[40px]
-                  flex items-center justify-center
-                  text-white px-4">
-
-    <div className="flex items-center gap-3">
-      <p className="italic whitespace-nowrap font-semibold text-[16px]">
-        Book your perfect stay with us. Welcome to Sudarshan Acro Resort.
-      </p>
-
-      {/* Book and View Button */}
-      <a
-        href="https://d.sriyog.com/sudarshanresort"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="border border-white rounded-md px-3 py-[2px]
-                   hover:bg-white hover:text-[#3d7703]
-                   transition-all duration-200 text-sm"
-      >
-        Book Now
-      </a>
-
-      {/* Close X (Lucide) */}
-      <button
-        onClick={() => setShowTopBar(false)}
-        className="border border-white rounded-md px-1 py-[2px]
-                   hover:bg-white hover:text-[#3d7703]
-                   transition-all duration-200 flex items-center justify-center
-                   text-white hover:opacity-70 transition"
-        aria-label="Close top bar"
-      >
-        <X size={20} />
-      </button>
-    </div>
-  </div>
-)}
-
-
       {/* NAVBAR */}
       <nav
         className={`sticky top-0 z-[1000] w-full h-[110px]
@@ -67,7 +28,7 @@ const Nav_Bar = () => {
         {/* Logo */}
         <div>
           <img
-            src="favicon/logo.webp"
+            src="favicon/logo.png"
             alt="logo"
             className="h-[90px] w-[90px] rounded-full object-cover
               max-[480px]:h-[70px] max-[480px]:w-[70px]"

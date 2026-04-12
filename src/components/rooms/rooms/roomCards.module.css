@@ -110,3 +110,60 @@
   transform: translateY(0);
   opacity: 1;
 }
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .roomcard_container {
+    padding: 80px 20px;
+  }
+  .roo {
+    grid-template-columns: repeat(2, 350px);
+    gap: 30px;
+  }
+  .imageWrapper {
+    width: 350px;
+    height: 230px;
+  }
+  .roomcard_content {
+    padding: 20px;
+  }
+  .price_container h1 {
+    font-size: 24px;
+  }
+  .bookbtn {
+    padding: 8px 25px;
+    font-size: 14px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .roomcard_container {
+    padding: 60px 10px;
+  }
+  .roo {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 400px;
+  }
+  .imageWrapper {
+    width: 100%;
+    height: 200px;
+  }
+  .roomcard_content {
+    padding: 15px;
+  }
+  .roomcard_content h2 {
+    font-size: 20px;
+  }
+  .price_container h1 {
+    font-size: 20px;
+  }
+  .price_container p {
+    font-size: 14px;
+  }
+  .bookbtn {
+    padding: 8px 20px;
+    font-size: 12px;
+  }
+}

@@ -195,8 +195,16 @@ const Booking_form = () => {
               <input
                 className={style.input}
                 value={form.phone}
-                onChange={(e) =>
+                type="tel"
+                pattern="[0-9]"
+                onChange={(e) =>{
+const value =e.target.value;
+if (/^\d*$/.test(value)) {
+
+                
                   setForm({ ...form, phone: e.target.value })
+                }
+                }
                 }
               />
             </div>

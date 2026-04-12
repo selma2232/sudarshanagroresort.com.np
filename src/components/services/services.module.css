@@ -12,18 +12,23 @@
 .container>*{
     margin-bottom: 40px;
 }
+
+
+
 /*tablet*/
 @media (max-width: 1024px) {
     .container>*{
         margin-bottom:30px;
     
     }
-}
 
+}
 /*mobile*/
 @media (max-width:768px) {
      .container>*{
         margin-bottom: 20px;
+
 }
+
 
 }
