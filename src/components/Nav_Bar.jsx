@@ -5,7 +5,6 @@ import { Menu, X } from "lucide-react";
 const Nav_Bar = () => {
   const [scroll, setScroll] = useState(false);
   const [menu, setMenu] = useState(false);
-  const [showTopBar, setShowTopBar] = useState(true);
 
   useEffect(() => {
     const onScroll = () => {

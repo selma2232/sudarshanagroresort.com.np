@@ -53,11 +53,6 @@ const Booking_form = () => {
     { label: "4" },
   ];
 
-  const travelAssistance = [
-    { label: "Yes" },
-    { label: "No" },
-  ];
-
   // ✅ SIMPLE VALIDATION
   const validate = () => {
     let newErrors = {};
@@ -196,10 +191,10 @@ const Booking_form = () => {
                 className={style.input}
                 value={form.phone}
                 type="tel"
-                pattern="[0-9]"
+                pattern="[0-9]{7,15}$"
                 onChange={(e) =>{
-const value =e.target.value;
-if (/^\d*$/.test(value)) {
+           const value =e.target.value;
+          if (/^\d*$/.test(value)) {
 
                 
                   setForm({ ...form, phone: e.target.value })

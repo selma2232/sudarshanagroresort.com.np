@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import style from "./homeHero.module.css";
 import { Link } from "react-router-dom";
 
 const HeaderContent = () => {
-  const texts = ["Luxury Resort", "Deluxe Rooms", "King Beds"];
+  const texts = useMemo(() => ["Luxury Resort", "Deluxe Rooms", "King Beds"], []);
 
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
