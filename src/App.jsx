@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import ScrollToTop from "./components/scrolltop.jsx";
 import QRm from './components/qr/QRm.jsx';
 
@@ -14,23 +14,32 @@ const Book_Now = React.lazy(() => import('./components/bookNow/book_now.jsx'));
 
 const App = () => {
   return (
-  <>
-   <ScrollToTop />
-   <Suspense fallback={<div>Loading...</div>}>
-    <Routes>
-      <Route path="/" element={<Starting_Page/>} />
-      <Route path='/home' element={ <Home/>} />
-      <Route path="/about" element={<About />} />
-      <Route path='/rooms' element={<Room />} />
-      <Route path='/services' element={<Services />} />
-      <Route path='/gallery' element={<Gallery />} />
-      <Route path='/contact' element={<Contact />} />
-      <Route path='/book' element={<Book_Now />} />
-      <Route path='/qr' element={<QRm />} />
-        
-      <Route path="*" element={<div>404 Not Found</div>} />
-    </Routes>
-    </Suspense>
+    <>
+      <ScrollToTop />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          {/* Splash */}
+          <Route path="/homesplash" element={<Starting_Page />} />
+
+          {}
+          <Route path="/home" element={<Home />} />
+
+         
+          <Route path="/home" element={<Navigate to="/" replace />} />
+
+          {/* Other pages */}
+          <Route path="/about" element={<About />} />
+          <Route path="/rooms" element={<Room />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/book" element={<Book_Now />} />
+          <Route path="/qr" element={<QRm />} />
+
+          {/* ✅ Only ONE wildcard */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
     </>
   )
 }

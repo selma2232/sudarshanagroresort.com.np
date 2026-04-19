@@ -5,11 +5,11 @@ const Starting_Page = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setTimeout(() => navigate("/home"), 3000);
+    const timer = setTimeout(() => navigate("/"), 3000);
     return () => clearTimeout(timer);
   }, [navigate]);
 
-  const handleClose = () => navigate("/home");
+  const handleClose = () => navigate("/");
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-300">
