@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route,Navigate  } from 'react-router-dom'
 import ScrollToTop from "./components/scrolltop.jsx";
 import QRm from './components/qr/QRm.jsx';
 
@@ -19,13 +19,13 @@ const App = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           {/* Splash */}
-          <Route path="/homesplash" element={<Starting_Page />} />
+          <Route path="/splash" element={<Starting_Page />} />
 
           {}
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
 
          
-          <Route path="/home" element={<Navigate to="/" replace />} />
+       <Route path="/home" element={<Navigate to="/" replace />} />
 
           {/* Other pages */}
           <Route path="/about" element={<About />} />
