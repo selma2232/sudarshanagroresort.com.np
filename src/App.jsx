@@ -16,13 +16,15 @@ const App = () => {
   return (
     <>
       <ScrollToTop />
+      <main>
+        <h1 className="sr-only">Sudarshan Agro Resort</h1>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           {/* Splash */}
           <Route path="/splash" element={<Starting_Page />} />
 
           {}
-          <Route path="/" element={<Home />} />
+          <Route index element={<Home />} />
 
          
        <Route path="/home" element={<Navigate to="/" replace />} />
@@ -40,6 +42,7 @@ const App = () => {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
+      </main>
     </>
   )
 }
