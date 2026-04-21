@@ -1,34 +1,5 @@
-
-
-
 .container {
-    display:flex;
-    flex-direction: column;
-    width: 100%;
-    overflow-x:hidden;
-
-}
-
-.container>*{
-    margin-bottom: 40px;
-}
-
-
-
-/*tablet*/
-@media (max-width: 1024px) {
-    .container>*{
-        margin-bottom:30px;
-    
-    }
-
-}
-/*mobile*/
-@media (max-width:768px) {
-     .container>*{
-        margin-bottom: 20px;
-
-}
-
-
+   max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
 }

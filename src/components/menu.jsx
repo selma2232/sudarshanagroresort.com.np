@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
-import menu from "/images/menu/bookinglogo.png"
+import menu from "/images/menu/bookinglogo.png";
+
 const Menu = () => {
   return (
     <div>
-      <Link to="https://d.sriyog.com/sudarshanresort" target="_blank">
+      <a
+        href="https://www.booking.com/hotel/np/sudarshan-resort.fi.html"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <img
           src={menu}
-          alt="booking logo"
-          aria-label="whatsapp"
+          alt="Booking.com"
+          aria-label="Booking.com"
           className="
             fixed
             bottom-[180px]
@@ -15,9 +19,10 @@ const Menu = () => {
             w-[75px]
             h-[75px]
             z-[100]
+            cursor-pointer
           "
         />
-      </Link>
+      </a>
     </div>
   );
 };
