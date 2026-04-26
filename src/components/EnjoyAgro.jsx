@@ -1,50 +1,65 @@
 import { useState } from 'react';
-import { CirclePlay, X } from 'lucide-react';
+import { Play, X } from 'lucide-react';
 
 const EnjoyAgro = ({ bg }) => {
   const [video, setVideo] = useState(false);
 
-  const videohandler = () => {
-    setVideo(true);
-  };
-
-  const cancle = () => {
-    setVideo(false);
-  };
-
   return (
     <div className="relative">
-      <section 
-        className="w-full bg-cover bg-center bg-fixed overflow-hidden" 
-        style={{ backgroundImage: `url(${bg})` }}
+
+      {/* HERO SECTION */}
+      <section
+        className="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center text-center overflow-hidden"
+        style={{
+          backgroundImage: `url(${bg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}
       >
-        <div className="relative w-full h-[55vh] flex flex-col justify-center items-center text-white text-center px-5">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl mb-2">Enjoy Agro Tourism</h1>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-green-500 mb-5">#VisitKoshi2025</h2>
-          <CirclePlay 
-            className="cursor-pointer transition-transform transform hover:scale-110" 
-            onClick={videohandler} 
-            size={85} 
-          />
+        {/* DARK OVERLAY (important for luxury look) */}
+        <div className="absolute inset-0 bg-black/50"></div>
+
+        {/* CONTENT */}
+        <div className="relative z-10 text-white px-6">
+          <h1 className="text-3xl md:text-5xl font-serif mb-2">
+            Enjoy Agro Tourism
+          </h1>
+
+          <h2 className="text-3xl md:text-5xl font-light text-[#c19b76] mb-6">
+            #VisitKoshi2025
+          </h2>
+
+          {/* PLAY BUTTON (luxury style) */}
+          <button
+            onClick={() => setVideo(true)}
+            className="group relative flex items-center justify-center w-20 h-20 rounded-full border border-white/50 backdrop-blur-md bg-white/10 hover:bg-[#c19b76] transition-all duration-300"
+          >
+            <Play className="text-white group-hover:scale-110 transition" size={28} />
+          </button>
         </div>
       </section>
 
-      {/* Video Overlay */}
+      {/* VIDEO MODAL */}
       {video && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center z-50">
-          <div className="relative flex mb-6">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 px-4">
+
+          {/* CLOSE BUTTON */}
+          <button
+            onClick={() => setVideo(false)}
+            className="absolute top-6 right-6 text-white hover:text-[#c19b76] transition"
+          >
+            <X size={32} />
+          </button>
+
+          {/* VIDEO */}
+          <div className="w-full max-w-4xl aspect-video rounded-lg overflow-hidden shadow-2xl">
             <iframe
-              className="w-full max-w-[860px] h-[250px] md:h-[350px] lg:h-[450px]"
+              className="w-full h-full"
               src="https://www.youtube.com/embed/dQw4w9WgXcQ"
               title="YouTube video player"
               frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="autoplay; encrypted-media"
               allowFullScreen
-            />
-            <X 
-              size={35} 
-              className="absolute bottom-110 left-[calc(100%+10px)] mt-52 text-white cursor-pointer md:left-[calc(100%+20px)]" 
-              onClick={cancle} 
             />
           </div>
         </div>

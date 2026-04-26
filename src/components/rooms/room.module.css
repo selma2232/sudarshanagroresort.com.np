@@ -1,5 +1,37 @@
+/* MAIN PAGE */
 .room {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+
+  /* 🔥 luxury soft background */
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #f8f6f2 40%,
+    #ffffff 100%
+  );
+}
+
+/* MAIN CONTENT WRAPPER */
+.main {
+  padding: 120px 10%;
+}
+
+/* SECTION SPACING SYSTEM */
+.section {
+  margin-bottom: 100px;
+}
+
+/* OPTIONAL: add divider feel */
+.section_alt {
+  padding: 100px 10%;
+  background: #f9f9f7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .main {
+    padding: 80px 20px;
+  }
 }

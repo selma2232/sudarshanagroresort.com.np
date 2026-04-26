@@ -1,5 +1,56 @@
+/* MAIN CONTAINER */
 .container {
-   max-width: 100%;
-  padding-left: 0;
-  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
+
+  /* 🌿 LUXURY RESORT BACKGROUND */
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.92),
+      rgba(255, 255, 255, 0.96)
+    ),
+    url("/images/background/1.webp");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* SECTIONS */
+.section {
+  padding: 120px 10%;
+}
+
+/* SOFT CONTRAST SECTION */
+.section_alt {
+  padding: 120px 10%;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(249, 249, 249, 0.95),
+    rgba(255, 255, 255, 0.95)
+  );
+}
+
+/* OPTIONAL: ADD LUXURY DIVIDER */
+.section::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: #c19b76;
+  margin: 60px auto 0;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  .section,
+  .section_alt {
+    padding: 80px 20px;
+  }
+
+  .container {
+    background-attachment: scroll;
+  }
 }

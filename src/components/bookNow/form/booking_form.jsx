@@ -1,306 +1,237 @@
 import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import style from "./booking_form.module.css";
 import FilterDropdown from "./filter";
 
 const Booking_form = () => {
+
+  const [step, setStep] = useState(1);
+
   const [form, setForm] = useState({
     fullname: "",
-    gender: "",
-    country: "",
-    state: "",
-    city: "",
     phone: "",
     number: "",
     room_type: "",
     room_quantity: "1",
-    bed_type: "",
-    arrival_date: "",
+    arrival_date: null,
     stay: "1 Day",
-    travel_assistance: "",
     message: ""
   });
 
-  const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
-    emailjs.init("4ufjEe2FuYXd9ArD0"); 
+    emailjs.init("4ufjEe2FuYXd9ArD0");
   }, []);
 
-  const stayDuration = [
-    { label: "1 Day" },
-    { label: "2 Days" },
-    { label: "3 Days" },
-    { label: "4 Days" },
-    { label: "More than 4 Days" },
-  ];
-
-  const roomType = [
-    { label: "King Bedroom" },
-    { label: "Twin Bedroom" },
-  ];
-
-  const bedType = [
-    { label: "Twin" },
-    { label: "King" },
-  ];
-
-  const roomQuantity = [
-    { label: "1" },
-    { label: "2" },
-    { label: "3" },
-    { label: "4" },
-  ];
-
-  // ✅ SIMPLE VALIDATION
-  const validate = () => {
-    let newErrors = {};
-
-    if (!form.fullname) newErrors.fullname = true;
-    if (!form.phone) newErrors.phone = true;
-    if (!form.arrival_date) newErrors.arrival_date = true;
-    if (!form.room_type) newErrors.room_type = true;
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const roomPrices = {
+    "King Bedroom": 2500,
+    "Twin Bedroom": 2000
   };
 
-  //  SUBMIT (FIXED)
+  const stayMap = {
+    "1 Day": 1,
+    "2 Days": 2,
+    "3 Days": 3,
+    "4 Days": 4,
+    "More than 4 Days": 5
+  };
+
+  const days = stayMap[form.stay] || 1;
+
+  const checkoutDate = () => {
+    if (!form.arrival_date) return "-";
+    const d = new Date(form.arrival_date);
+    d.setDate(d.getDate() + days);
+    return d.toISOString().split("T")[0];
+  };
+
+  const totalPrice =
+    (roomPrices[form.room_type] || 0) *
+    Number(form.room_quantity || 1) *
+    days;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validate()) return;
-
     try {
       await emailjs.send(
-        "service_v4mqblp",   
-        "template_ri2ns9r",  
+        "service_v4mqblp",
+        "template_ri2ns9r",
         {
           fullname: form.fullname,
           phone: form.phone,
-          number: form.number,
           room_type: form.room_type,
-          arrival_date: form.arrival_date,
-          message: form.message || "No message"
+          total: totalPrice,
+          arrival: form.arrival_date,
+          checkout: checkoutDate(),
+          message: form.message
         }
       );
 
       setIsSubmitted(true);
+      setStep(1);
 
-      // reset form
-      setForm({
-        fullname: "",
-        gender: "",
-        country: "",
-        state: "",
-        city: "",
-        phone: "",
-        number: "",
-        room_type: "",
-        room_quantity: "1",
-        bed_type: "",
-        arrival_date: "",
-        stay: "1 Day",
-        travel_assistance: "",
-        message: ""
-      });
-
-    } catch (error) {
-      console.error("EmailJS Error:", error);
-      console.log("STATUS:", error.status);
-      console.log("TEXT:", error.text);
-      alert("Failed to send booking ");
+    } catch {
+      alert("Booking failed");
     }
   };
 
-  return (
-    <main>
-      <section className={style.container}>
+  const roomType = [
+    { label: "King Bedroom" },
+    { label: "Twin Bedroom" }
+  ];
 
-        <div className={style.header}>
-          <h2 className={style.resort_booking_from}>Resort Booking Form</h2>
-          <p className={style.bookatyour_fingertips}>
-            Booking at your fingertips.
-          </p>
+  const roomQuantity = [
+    { label: "1" }, { label: "2" }, { label: "3" }
+  ];
+
+  const stayOptions = Object.keys(stayMap).map(label => ({ label }));
+
+  return (
+    <div className={style.container}>
+
+      {/* 🔥 HEADER */}
+      <div className={style.header}>
+        <h1>Resort Booking Form</h1>
+        <p>Booking at your fingertips.</p>
+      </div>
+
+      <form className={style.form} onSubmit={handleSubmit}>
+
+        {/* STEP INDICATOR */}
+        <div className={style.stepIndicator}>
+          <span className={step === 1 ? style.active : ""}>1</span>
+          <span className={step === 2 ? style.active : ""}>2</span>
+          <span className={step === 3 ? style.active : ""}>3</span>
         </div>
 
-        <form className={style.form} onSubmit={handleSubmit}>
-          <div className={style.gridForm}>
+        {/* STEP 1 */}
+        {step === 1 && (
+          <div className={style.section}>
+            <h2>Guest Info</h2>
 
-            <div className={style.field}>
-              <label className={style.label}>Full Name *</label>
-              <input
-                className={style.input}
-                value={form.fullname}
-                onChange={(e) =>
-                  setForm({ ...form, fullname: e.target.value })
-                }
-              />
+            <div className={style.gridForm}>
+
+              <div className={style.floatingField}>
+                <input
+                  required
+                  value={form.fullname}
+                  onChange={(e) =>
+                    setForm({ ...form, fullname: e.target.value })
+                  }
+                />
+                <label>Full Name</label>
+              </div>
+
+              <div className={style.floatingField}>
+                <input
+                  required
+                  value={form.phone}
+                  onChange={(e) => {
+                    if (/^\d*$/.test(e.target.value)) {
+                      setForm({ ...form, phone: e.target.value });
+                    }
+                  }}
+                />
+                <label>Phone</label>
+              </div>
+
+              <div className={style.floatingField}>
+                <input
+                  value={form.number}
+                  onChange={(e) =>
+                    setForm({ ...form, number: e.target.value })
+                  }
+                />
+                <label>Guests</label>
+              </div>
+
             </div>
 
-            <div className={style.field}>
-              <FilterDropdown
-                label="Gender"
-                id="gender"
-                options={[{ label: "Male" }, { label: "Female" }]}
-                form={form}
-                setForm={setForm}
-                errors={errors}
-                setErrors={setErrors}
-              />
-            </div>
-
-            <div className={style.field}>
-              <FilterDropdown
-                label="Country"
-                id="country"
-                options={[{ label: "Nepal" }, { label: "India" }]}
-                form={form}
-                setForm={setForm}
-                errors={errors}
-                setErrors={setErrors}
-              />
-            </div>
-
-            <div className={style.field}>
-              <label className={style.label}>State *</label>
-              <input
-                className={style.input}
-                value={form.state}
-                onChange={(e) =>
-                  setForm({ ...form, state: e.target.value })
-                }
-              />
-            </div>
-
-            <div className={style.field}>
-              <label className={style.label}>City *</label>
-              <input
-                className={style.input}
-                value={form.city}
-                onChange={(e) =>
-                  setForm({ ...form, city: e.target.value })
-                }
-              />
-            </div>
-
-            <div className={style.field}>
-              <label className={style.label}>Phone *</label>
-              <input
-                className={style.input}
-                value={form.phone}
-                type="tel"
-                pattern="[0-9]{7,15}$"
-                onChange={(e) =>{
-           const value =e.target.value;
-          if (/^\d*$/.test(value)) {
-
-                
-                  setForm({ ...form, phone: e.target.value })
-                }
-                }
-                }
-              />
-            </div>
-
-            <div className={style.field}>
-              <label className={style.label}>Number of Guests *</label>
-              <input
-                className={style.input}
-                value={form.number}
-                onChange={(e) =>
-                  setForm({ ...form, number: e.target.value })
-                }
-              />
-            </div>
-
-            <div className={style.field}>
-              <FilterDropdown
-                label="Room Type"
-                id="room_type"
-                options={roomType}
-                form={form}
-                setForm={setForm}
-                errors={errors}
-                setErrors={setErrors}
-              />
-            </div>
-
-            <div className={style.field}>
-              <FilterDropdown
-                label="Room Quantity"
-                id="room_quantity"
-                options={roomQuantity}
-                form={form}
-                setForm={setForm}
-                errors={errors}
-                setErrors={setErrors}
-              />
-            </div>
-
-            <div className={style.field}>
-              <FilterDropdown
-                label="Bed Type"
-                id="bed_type"
-                options={bedType}
-                form={form}
-                setForm={setForm}
-                errors={errors}
-                setErrors={setErrors}
-              />
-            </div>
-
-            <div className={style.field}>
-              <label className={style.label}>Arrival Date *</label>
-              <input
-                type="date"
-                className={style.input}
-                value={form.arrival_date}
-                onChange={(e) =>
-                  setForm({ ...form, arrival_date: e.target.value })
-                }
-              />
-            </div>
-
-            <div className={style.field}>
-              <FilterDropdown
-                label="Stay Duration"
-                id="stay"
-                options={stayDuration}
-                form={form}
-                setForm={setForm}
-                errors={errors}
-                setErrors={setErrors}
-              />
-            </div>
-
-            <div className={style.full}>
-              <label className={style.label}>Message</label>
-              <textarea
-                className={style.textarea}
-                value={form.message}
-                onChange={(e) =>
-                  setForm({ ...form, message: e.target.value })
-                }
-              />
-            </div>
-
-            <button type="submit" className={style.button}>
-              BOOK
+            <button
+              type="button"
+              className={style.primaryBtn}
+              onClick={() => setStep(2)}
+            >
+              Next →
             </button>
-
-          </div>
-        </form>
-
-        {isSubmitted && (
-          <div style={{ textAlign: "center", marginTop: "10px" }}>
-         Booking sent successfully
           </div>
         )}
 
-      </section>
-    </main>
+        {/* STEP 2 */}
+        {step === 2 && (
+          <div className={style.section}>
+            <h2>Booking Details</h2>
+
+            <div className={style.gridForm}>
+
+              <FilterDropdown label="Room Type" id="room_type" options={roomType} form={form} setForm={setForm} />
+              <FilterDropdown label="Rooms" id="room_quantity" options={roomQuantity} form={form} setForm={setForm} />
+
+              <div>
+                <label>Check-in</label>
+                <DatePicker
+                  selected={form.arrival_date}
+                  onChange={(date) =>
+                    setForm({ ...form, arrival_date: date })
+                  }
+                  minDate={new Date()}
+                  className={style.datepicker}
+                  placeholderText="Select date"
+                />
+              </div>
+
+              <FilterDropdown label="Stay" id="stay" options={stayOptions} form={form} setForm={setForm} />
+
+            </div>
+
+            <div className={style.stepActions}>
+              <button type="button" onClick={() => setStep(1)}>← Back</button>
+              <button type="button" onClick={() => setStep(3)}>Next →</button>
+            </div>
+          </div>
+        )}
+
+        {/* STEP 3 */}
+        {step === 3 && (
+          <div className={style.section}>
+            <h2>Confirm Booking</h2>
+
+            <div className={style.summary}>
+              <p><strong>Room:</strong> {form.room_type}</p>
+              <p><strong>Rooms:</strong> {form.room_quantity}</p>
+              <p><strong>Stay:</strong> {form.stay}</p>
+              <p><strong>Check-in:</strong> {form.arrival_date?.toDateString()}</p>
+              <p><strong>Check-out:</strong> {checkoutDate()}</p>
+
+              <h3>Total: NPR {totalPrice}</h3>
+            </div>
+
+            <textarea
+              placeholder="Any special requests..."
+              value={form.message}
+              onChange={(e) =>
+                setForm({ ...form, message: e.target.value })
+              }
+            />
+
+            <div className={style.stepActions}>
+              <button type="button" onClick={() => setStep(2)}>← Back</button>
+              <button type="submit" className={style.primaryBtn}>
+                Confirm Booking
+              </button>
+            </div>
+          </div>
+        )}
+
+      </form>
+
+      {isSubmitted && <p className={style.success}>Booking sent ✅</p>}
+    </div>
   );
 };
 

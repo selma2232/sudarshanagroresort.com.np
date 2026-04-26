@@ -1,42 +1,54 @@
+
 import style from "./facilitiesBlogcards.module.css";
 
 const Facilities_blogcards = () => {
   const facilities = [
     {
-      img: "images/home/facilities/barbecue.webp",
-      h3: "Barbecue",
-      p: "Enjoy tasty grilled food at our resort's barbecue. It's a great way to dine outdoors.",
+      img: "/images/home/facilities/barbecue.webp",
+      title: "Barbecue Experience",
+      desc: "Enjoy outdoor dining with fresh grilled meals under nature",
     },
     {
-      img: "images/home/facilities/powerBackup.webp",
-      h3: "Power Backups",
-      p: "Enjoy uninterrupted comfort with reliable power backup facilities, even during outages.",
+      img: "/images/home/facilities/powerBackup.webp",
+      title: "24/7 Power Backup",
+      desc: "Reliable electricity ensuring uninterrupted comfort",
     },
     {
-      img: "images/home/facilities/parking.webp",
-      h3: "Free Parking",
-      p: "Parking is complimentary, giving you peace of mind during your stay.",
+      img: "/images/home/facilities/parking.webp",
+      title: "Private Parking",
+      desc: "Safe and secure parking space for all guests",
     },
     {
-      img: "images/home/facilities/resturant.webp",
-      h3: "Riverside Restaurant",
-      p: "At Sudarshan Agro Resort, enjoy riverside dining for a serene mealtime.",
+      img: "/images/home/facilities/resturant.webp",
+      title: "Riverside Dining",
+      desc: "Relax with peaceful river views and premium cuisine",
     },
   ];
 
   return (
-    <section className={style.container} aria-labelledby="facilities-heading">
-      <h2 id="facilities-heading">Facilities</h2>
-      <div className={style.horizontal_line}></div>
-      <div className={style.Facilities_blogcards}>
+    <section className={style.section}>
+
+      {/* HEADER */}
+      <div className={style.header}>
+        <span>OUR FACILITIES</span>
+        <h2>Experience Comfort & Nature</h2>
+        <p>Premium amenities designed for relaxation and luxury living</p>
+      </div>
+
+      {/* GRID */}
+      <div className={style.grid}>
         {facilities.map((item, index) => (
-          <article key={index} className={style.Blog_container}>
-            <img src={item.img} alt={item.h3} loading="lazy" />
-            <h3>{item.h3}</h3>
-            <p>{item.p}</p>
-          </article>
+          <div key={index} className={style.card}>
+            <div className={style.iconWrapper}>
+              <img src={item.img} alt={item.title} />
+            </div>
+
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </div>
         ))}
       </div>
+
     </section>
   );
 };

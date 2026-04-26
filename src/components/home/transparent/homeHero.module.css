@@ -1,23 +1,12 @@
+/* HERO CONTAINER */
 .sudarshan_main_container {
   position: relative;
   width: 100%;
-  height: 75vh;
+  height: 80vh;
   overflow: hidden;
 }
 
-.typing_container{
-  display: flex;
-  align-items: center;
-}
-.typing_text{
-       font-family: 'Lora';
-    font-style: italic;
-      margin-left: 10px;
-}
-.cursor{
-  font-size: 2em;
-  
-}
+/* BACKGROUND IMAGE */
 .heroImg {
   position: absolute;
   inset: 0;
@@ -26,116 +15,213 @@
   object-fit: cover;
 }
 
+/* 🔥 PREMIUM OVERLAY (gradient instead of flat) */
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.3),
+    rgba(0,0,0,0.7)
+  );
 }
 
+/* 🔥 CENTERED CONTENT (IMPORTANT FIX) */
 .topcontainer {
-  position: relative;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   z-index: 2;
-  top: 45%;
-  left: 20%;
+  padding: 0 20px;
 }
-.book_now_btn{
-  font-size: 16px;
-  color: white;
-  text-decoration: none;
-  background-color: green;
- width: fit-content;
-  padding: 15px 40px;
-}
-.h1_Link_btn_wrapper{
+
+/* TEXT WRAPPER */
+.h1_Link_btn_wrapper {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-}
-.top{
-  
-  color: #FFFFFF;
-    font-family: 'Lora';
-    font-style: italic;
-    font-size: 19px;
-}
-.comfort, .typing_text, .for_your_vacation{
-  color: white;    
-  font-size: 55px;
+  gap: 25px;
+  align-items: center;
 }
 
+/* SMALL TOP TEXT */
+.top {
+  color: #ddd;
+  font-family: 'Lora';
+  font-style: italic;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
 
-/* for cursor */
+/* MAIN HEADINGS */
+.comfort,
+.typing_text,
+.for_your_vacation {
+  color: white;
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* TYPING */
+.typing_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.typing_text {
+  margin-left: 10px;
+}
+
+/* CURSOR */
 .cursor {
-  font-size: 55px;
+  font-size: 60px;
   margin-left: 5px;
   color: white;
-  /* Blinking animation */
   animation: blink 1s step-start infinite;
 }
 
-/* Define the blinking keyframes */
-@keyframes blink {
-  0%, 50%, 100% {
-    opacity: 1;
-  }
-  25%, 75% {
-    opacity: 0;
-  }
+/* BUTTON (UPGRADED) */
+.book_now_btn {
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  background: linear-gradient(135deg, #4d9221, #6bbf3a);
+  padding: 14px 40px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
+
+.book_now_btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+/* BLINK ANIMATION */
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+/* ========================= */
+/* 🔥 NEW SECTIONS (HOMEPAGE) */
+/* ========================= */
+
+.booking_cta {
+  text-align: center;
+  padding: 70px 20px;
+  background: #f8f8f8;
+}
+
+.book_btn {
+  display: inline-block;
+  margin-top: 20px;
+  background: linear-gradient(135deg, #4d9221, #6bbf3a);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.book_btn:hover {
+  transform: translateY(-2px);
+}
+
+/* WHY SECTION */
+.why_section {
+  padding: 90px 10%;
+  text-align: center;
+}
+
+.why_section h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.why_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.why_grid div {
+  background: #fff;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.why_grid div:hover {
+  transform: translateY(-5px);
+}
+
+/* FINAL CTA */
+.final_cta {
+  text-align: center;
+  padding: 90px 20px;
+  background: linear-gradient(135deg, #4d9221, #2f5f14);
+  color: white;
+}
+
+.final_cta .book_btn {
+  background: white;
+  color: #4d9221;
+}
+
+/* ========================= */
+/* 📱 RESPONSIVE */
+/* ========================= */
 
 /* Tablet */
 @media (max-width: 1024px) {
-  .sudarshan_main_container {
-    height: 60vh;
-  }
-  .topcontainer {
-    left: 15%;
-    top: 40%;
-  }
-  .comfort, .typing_text, .for_your_vacation {
+  .comfort,
+  .typing_text,
+  .for_your_vacation {
     font-size: 45px;
   }
+
   .cursor {
     font-size: 45px;
   }
-  .top {
-    font-size: 17px;
-  }
-  .book_now_btn {
-    font-size: 14px;
-    padding: 12px 30px;
-  }
-  .h1_Link_btn_wrapper {
-    gap: 20px;
+
+  .why_grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
   .sudarshan_main_container {
-    height: 50vh;
+    height: 60vh;
   }
-  .topcontainer {
-    left: 10%;
-    top: 35%;
-  }
-  .comfort, .typing_text, .for_your_vacation {
+
+  .comfort,
+  .typing_text,
+  .for_your_vacation {
     font-size: 30px;
   }
+
   .cursor {
     font-size: 30px;
   }
+
   .top {
     font-size: 14px;
   }
+
   .book_now_btn {
-    font-size: 12px;
-    padding: 10px 20px;
+    padding: 10px 25px;
+    font-size: 14px;
   }
-  .h1_Link_btn_wrapper {
-    gap: 15px;
-  }
-  .typing_text {
-    margin-left: 5px;
+
+  .why_grid {
+    grid-template-columns: 1fr;
   }
 }

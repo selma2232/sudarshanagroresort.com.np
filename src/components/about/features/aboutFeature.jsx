@@ -1,85 +1,62 @@
+import style from './aboutFeature.module.css';
+import { Wifi, Car, Utensils, PawPrint, Clock, Accessibility } from 'lucide-react';
 
-import style from './aboutFeature.module.css'
-import { Check } from 'lucide-react'
-const about_feature_blog = () => {
-  const aboutFeature=[
-    {img:"/images/about/feature/car.webp",
-      h3:"Free WiFi Access",},
-        {img:"images/about/feature/utensils.webp",
-      h3:"Restaurant & Food Service",},
-        {img:"images/about/feature/car.webp",
-      h3:"Free Parking",},
-  ]
+const AboutFeature = () => {
+
+  const features = [
+    {
+      icon: <Wifi size={28} />,
+      title: "Free WiFi",
+      desc: "Stay connected with high-speed internet access"
+    },
+    {
+      icon: <Utensils size={28} />,
+      title: "Restaurant",
+      desc: "Enjoy fresh and authentic local cuisine"
+    },
+    {
+      icon: <Car size={28} />,
+      title: "Free Parking",
+      desc: "Safe and convenient parking available"
+    },
+    {
+      icon: <PawPrint size={28} />,
+      title: "Pet Friendly",
+      desc: "Bring your pets along for a relaxing stay"
+    },
+    {
+      icon: <Accessibility size={28} />,
+      title: "Accessible",
+      desc: "Facilities designed for all guests"
+    },
+    {
+      icon: <Clock size={28} />,
+      title: "Flexible Stay",
+      desc: "Check-in 1PM • Check-out 11AM"
+    }
+  ];
+
   return (
-   <div className={style.feature_container}>
-        
-        <div className={style.image_main_container}>
-        <img src="images/about/feature/1.webp" alt="" />
-        </div>
-        
-        <div className={style.feature_content}>
-        <div className={style.feature_container_header}>
-          <h1>Features</h1>
-          <div className={style.line}></div>
-          </div>
-          
-        <div className={style.feature_content_container}>
-          <div className={style.list_container}>
-            <ul className={style.list_container_check}>
-              <div>
-              <li>
-              <Check color="#00ff33" strokeWidth={3} />
-              <p>In Room Dinning</p>
-              </li>
-              
-               <li>
-              <Check color="#00ff33" strokeWidth={3} />
-              <p>Transport Service</p>
-              </li>
-              
-               <li>
-              <Check color="#00ff33" strokeWidth={3} />
-              <p>Facilities for the Disable</p>
-              </li>
-              </div>
-              
-              <div>
-               <li>
-              <Check color="#00ff33" strokeWidth={3} />
-              <p>Pet Friendly Accomodation</p>
-              </li>
-               <li>
-              <Check color="#00ff33" strokeWidth={3} />
-              <p>Check In : 1.00 pm</p>
-              </li>
-               <li>
-              <Check color="#00ff33" strokeWidth={3} />
-              <p>Check out : 11.00 am</p>
-              </li>
-              </div>
-            </ul>
-          </div>
-          
-            <div className={style.line2}></div>
-          <div className={style.feature_container_footer}>
-            {aboutFeature.map((item,index)=>(
-              <div key={index}>
-                <div className={style.FooterIconContainer}>
-                <img src={item.img} alt="img" />
-                <h3>{item.h3}</h3>
-                <div className={style.line3}></div>
-            </div>
-          
-          
-            </div>
-            ))}
-          
-          </div>
-          
-        </div>
-        </div>
-      </div>
-  )
-}
+    <section className={style.container}>
 
-export default about_feature_blog
+      <div className={style.header}>
+        <span>Our Amenities</span>
+        <h2>Comfort & Convenience</h2>
+        <p>Everything you need for a relaxing and memorable stay</p>
+      </div>
+
+      <div className={style.grid}>
+        {features.map((item, index) => (
+          <div key={index} className={style.card}>
+            <div className={style.icon}>{item.icon}</div>
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+    </section>
+  );
+};
+
+export default AboutFeature;

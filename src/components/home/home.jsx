@@ -37,37 +37,38 @@ const Home = () => {
       </header>
 
       <main id="main-content">
-        <HomeHero />
 
-        <section aria-labelledby="about-heading">
-          <HomeAbout headingId="about-heading" />
-        </section>
+  <HomeHero />
 
-        <Suspense fallback={<div>Loading Accommodation...</div>}>
-          <section aria-labelledby="accommodation-heading">
-            <Our_Accomodation headingId="accommodation-heading" />
-          </section>
-        </Suspense>
+  <section className={style.section_light}>
+    <HomeAbout headingId="about-heading" />
+  </section>
 
-        <Suspense fallback={<div>Loading Facilities...</div>}>
-          <section aria-labelledby="facilities-heading">
-            <Facilities_blogcards headingId="facilities-heading" />
-          </section>
-        </Suspense>
+  <section className={style.section_white}>
+    <Suspense fallback={<div>Loading Accommodation...</div>}>
+      <Our_Accomodation headingId="accommodation-heading" />
+    </Suspense>
+  </section>
 
-        <Suspense fallback={<div>Loading Agro Experience...</div>}>
-          <section aria-labelledby="agro-heading">
-            <EnjoyAgro bg="images/home/transparentbg/1.webp" headingId="agro-heading" />
-          </section>
-        </Suspense>
+  <section className={style.section_soft}>
+    <Suspense fallback={<div>Loading Facilities...</div>}>
+      <Facilities_blogcards headingId="facilities-heading" />
+    </Suspense>
+  </section>
 
-        <Suspense fallback={<div>Loading Testimonials...</div>}>
-          <section aria-labelledby="testimonials-heading">
-            <Testimonials headingId="testimonials-heading" />
-          </section>
-        </Suspense>
-      </main>
+  <section className={style.section_dark}>
+    <Suspense fallback={<div>Loading Agro Experience...</div>}>
+      <EnjoyAgro bg="images/home/transparentbg/1.webp" headingId="agro-heading" />
+    </Suspense>
+  </section>
 
+  <section className={style.section_white}>
+    <Suspense fallback={<div>Loading Testimonials...</div>}>
+      <Testimonials headingId="testimonials-heading" />
+    </Suspense>
+  </section>
+
+</main>
       <footer>
         <Footer />
       </footer>

@@ -1,49 +1,107 @@
+/* SECTION */
 .container {
-  display: flex;
-  flex-direction: column;
-  padding: 100px 0;
+  padding: 160px 0;
+  background: #ffffff;
+}
 
-  gap: 20px;
-  background-color: #f5f5f7;
-}
+/* HEADER */
 .header {
-  display: flex;
-  margin-left: 20%;
+  text-align: center;
+  margin-bottom: 120px;
 }
-.header h1 {
-  font-size: 36px;
-  font-family: "Open Sans", sans-serif;
-  color: #333333;
+
+.header span {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #c19b76;
 }
-.line {
-  width: 50px;
-  height: 2px;
-  background-color: #00a10d;
-  margin-left: 15px;
-  margin-top: 30px;
+
+.header h2 {
+  font-size: 48px;
+  margin: 10px 0;
+  font-family: "Playfair Display", serif;
 }
-.img_content_wrap {
+
+.header p {
+  color: #777;
+}
+
+/* EACH BLOCK */
+.sectionBlock {
+  position: relative;
+  height: 85vh;
+  margin-bottom: 120px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 40px;
-  padding: 40px 0;
 }
-.contentwrap {
-  width: 250px;
-  height: 320px;
-  background: #ffffff;
-  padding: 20px;
-  text-align: center;
+
+/* BACKGROUND IMAGE */
+.bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* 🔥 parallax */
+  filter: brightness(0.75);
 }
-.img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  margin-bottom: 15px;
+
+/* CONTENT */
+.content {
+  position: relative;
+  max-width: 500px;
+  margin-left: 10%;
+
+  color: white;
+  z-index: 2;
 }
-.titlelink {
+
+/* TEXT */
+.content span {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #c19b76;
+}
+
+.content h3 {
+  font-size: 42px;
+  margin: 15px 0;
+  font-family: "Playfair Display", serif;
+}
+
+.content p {
+  line-height: 28px;
+  color: #e5e5e5;
+  margin-bottom: 25px;
+}
+
+/* BUTTON */
+.content button {
+  padding: 14px 32px;
+  border-radius: 40px;
+  border: none;
+  background: white;
   color: black;
-  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.content button:hover {
+  background: #c19b76;
+  color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sectionBlock {
+    height: 60vh;
+  }
+
+  .content {
+    margin-left: 20px;
+    max-width: 90%;
+  }
+
+  .content h3 {
+    font-size: 28px;
+  }
 }

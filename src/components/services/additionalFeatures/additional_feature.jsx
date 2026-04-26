@@ -1,32 +1,74 @@
-
-import style from './Additional_feature.module.css'
-import { Link } from 'react-router-dom'
+import style from './Additional_feature.module.css';
+import { motion } from "framer-motion";
 
 const Additional_feature = () => {
-    const image=[
-        {img:"images/services/additional_feature/1.webp" ,title:'Photographer', description:'Photographers can capture stunning landscapes and unique moments with ease, thanks to our picturesque surroundings and dedicated photography spots'},
-        {img:"images/services/additional_feature/2.webp",title:'Trained Driver', description:'Our trained drivers ensure hassle-free excursions to nearby attractions, allowing you to relax and immerse yourself in the experience.'},
-        {img:"images/services/additional_feature/3.webp" ,title:'Laundry', description:'At Sudarsan Agro Resort, convenient laundry services keep you fresh and comfortable throughout your stay.ensuring a comfortable and worry-free stay.'},
-        {img:"images/services/additional_feature/4.webp" ,title:'Coffee Maker', description:'Elevate your stay with the convenience of in-room coffee makers, ensuring a perfect brew whenever you desire. Savor freshly brewed coffee anytime.'},
-    ]
-  return (
-    <div className={style.container}>
-        <div className={style.header}>
-        <h1>Additonal Features</h1>
-        <div className={style.line}></div>
-        </div>
-        <div className={style.img_content_wrap}>
-        {image.map((item)=>(
-            <div key={item.title} className={style.contentwrap}>
-                <img className={style.img} src={item.img} alt={item.title} />
-                <Link className={style.titlelink} onClick={() => window.scrollTo(0,0)}><h2>{item.title}</h2></Link>
-                <p>{item.description}</p>
-            </div>
-        ))}
-        </div>
-    
-    </div>
-  )
-}
+  const services = [
+    {
+      img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+      title: "Photography Experience",
+      description:
+        "Capture unforgettable moments with professional photography in our scenic natural surroundings.",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4",
+      title: "Private Transport",
+      description:
+        "Enjoy stress-free travel with experienced drivers guiding you through nearby destinations.",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952",
+      title: "Laundry Service",
+      description:
+        "Stay fresh and comfortable with premium laundry services throughout your stay.",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085",
+      title: "In-Room Coffee",
+      description:
+        "Relax anytime with freshly brewed coffee available right in your room.",
+    },
+  ];
 
-export default Additional_feature
+  return (
+    <section className={style.container}>
+
+      {/* HEADER */}
+      <div className={style.header}>
+        <span>EXPERIENCES</span>
+        <h2>Additional Services</h2>
+        <p>Designed to elevate every moment of your stay</p>
+      </div>
+
+      {services.map((item, index) => (
+        <motion.div
+          key={item.title}
+          className={style.sectionBlock}
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+
+          {/* BACKGROUND IMAGE */}
+          <div
+            className={style.bg}
+            style={{ backgroundImage: `url(${item.img})` }}
+          />
+
+          {/* CONTENT */}
+          <div className={style.content}>
+            <span>Premium Experience</span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+
+           
+          </div>
+
+        </motion.div>
+      ))}
+
+    </section>
+  );
+};
+
+export default Additional_feature;

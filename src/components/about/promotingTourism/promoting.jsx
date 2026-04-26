@@ -1,21 +1,45 @@
+import style from './promoting.module.css';
 
-import style from './promoting.module.css'
-const promoting = () => {
-    const promoting=[
-      {img:"images/about/promoting/1.webp"},
-      {img:"images/about/promoting/2.webp"},
-      {img:"images/about/promoting/3.webp"},
-    ]
+const Promoting = () => {
   return (
-    <div className={style.promoting_container}>
-        <h1>Promoting Tourism</h1>
-        <div className={style.image_container}>
-        {promoting.map((promote,index)=>(
-          <img className={style.img_promote} key={index} src={promote.img} alt="" />
-        ))}
+    <section className={style.container}>
+
+      {/* 🌿 HERO IMAGE */}
+      <div className={style.hero}>
+        <img src="images/about/promoting/1.webp" alt="Tourism" />
+
+        <div className={style.hero_overlay}>
+          <span>Our Vision</span>
+          <h2>Promoting Tourism</h2>
+
+          <p>
+            Connecting people with nature, culture, and authentic experiences
+            through meaningful travel.
+          </p>
         </div>
       </div>
-  )
-}
 
-export default promoting
+      {/* 🌿 IMAGE GRID */}
+       <div className={style.grid}>
+
+        <div className={style.card_large}>
+          <img src="images/about/promoting/2.webp" alt="Nature" />
+          <div className={style.card_overlay}>
+            <h3>Nature</h3>
+          </div>
+        </div>
+
+        <div className={style.card_small}>
+          <img src="images/about/promoting/3.webp" alt="Culture" />
+          <div className={style.card_overlay}>
+            <h3>Culture</h3>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+  );
+};
+
+export default Promoting;

@@ -1,153 +1,118 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 100px 100px 100px;
-  background-color: #ffffff;
-}
-
-.container h2 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  color: #242424;
-  font-size: 32px;
-  line-height: 1.2;
-}
-
-.horizontal_line {
-  width: 60px;
-  border: 1px solid #C19B76;
-  margin: 10px 0 40px;
-}
-
-.Facilities_blogcards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 0 0 0;
-}
-
-.Blog_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #999595;
-  padding: 30px 20px;
-  border-radius: 8px;
-  background-color: #fff;
-  max-width: 280px;
+/* SECTION */
+.section {
+  padding: 120px 10%;
+  background: linear-gradient(to bottom, #f8f6f2, #ffffff);
   text-align: center;
 }
 
-.Blog_container img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  margin-bottom: 20px;
-  border-radius: 8px;
+/* HEADER */
+.header span {
+  color: #c19b76;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
-.Blog_container h3 {
+.header h2 {
+  font-size: 42px;
+  margin: 12px 0;
+  font-family: "Playfair Display", serif;
+  color: #1e1e1e;
+}
 
-  font-family: 'Open Sans', sans-serif;
+.header p {
+  color: #777;
+  margin-bottom: 70px;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+/* CARD */
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+
+  border-radius: 18px;
+  padding: 40px 25px;
+
+  text-align: center;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+
+  transition: all 0.35s ease;
+}
+
+/* HOVER (luxury subtle lift) */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.12);
+}
+
+/* ICON WRAPPER */
+.iconWrapper {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #f3ede5, #ffffff);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ICON */
+.iconWrapper img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+
+  /* 🔥 gold tint (luxury feel) */
+  filter: sepia(1) saturate(3) hue-rotate(10deg);
+}
+
+/* TITLE */
+.card h3 {
+  font-size: 18px;
   font-weight: 600;
-  color: #000;
+  color: #1e1e1e;
   margin-bottom: 10px;
 }
 
-.Blog_container p {
-  font-size: 16px;
-  font-family: 'Open Sans', sans-serif;
-  line-height: 1.5;
-  color: #664c4c;
+/* DESCRIPTION */
+.card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 22px;
 }
 
-@media screen and (max-width: 480px) {
-  .container {
-    padding: 40px 20px 20px 20px;
-  }
+/* GOLD ACCENT LINE */
+.card::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  margin: 20px auto 0;
 
-  .Facilities_blogcards {
-    flex-direction: column;
-    gap: 20px;
-    padding: 0;
-  }
-
-  .Blog_container {
-    max-width: 90%;
-    padding: 20px;
-  }
-
-  .Blog_container img {
-    width: 60px;
-    height: 60px;
-  }
-
-  .Blog_container h3 {
-    font-size: 22px;
-  }
-
-  .Blog_container p {
-    font-size: 15px;
-  }
+  background: linear-gradient(to right, transparent, #c19b76, transparent);
 }
 
-/* Tablet */
-@media (max-width: 1024px) {
-  .container {
-    padding: 50px 50px 80px 50px;
-  }
-  .container h2 {
-    font-size: 28px;
-  }
-  .Facilities_blogcards {
-    gap: 15px;
-  }
-  .Blog_container {
-    max-width: 240px;
-    padding: 25px 15px;
-  }
-  .Blog_container img {
-    width: 45px;
-    height: 45px;
-  }
-  .Blog_container h3 {
-    font-size: 20px;
-  }
-  .Blog_container p {
-    font-size: 15px;
-  }
-}
-
-/* Mobile */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .container {
-    padding: 40px 20px 20px 20px;
+  .section {
+    padding: 80px 20px;
   }
-  .container h2 {
-    font-size: 24px;
-  }
-  .Facilities_blogcards {
-    flex-direction: column;
-    gap: 20px;
-    padding: 0;
-  }
-  .Blog_container {
-    max-width: 90%;
-    padding: 20px;
-  }
-  .Blog_container img {
-    width: 60px;
-    height: 60px;
-  }
-  .Blog_container h3 {
-    font-size: 22px;
-  }
-  .Blog_container p {
-    font-size: 15px;
+
+  .header h2 {
+    font-size: 28px;
   }
 }

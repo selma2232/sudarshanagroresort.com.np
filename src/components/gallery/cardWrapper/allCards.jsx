@@ -1,54 +1,72 @@
-import style from './allCards.module.css'
-
+import style from './allCards.module.css';
 import { useState } from 'react';
-import All from '../smallCards/smallCards.jsx'
-import Twin_bed from '../twinBedCards/twinBedCards.jsx'
+
+import All from '../smallCards/smallCards.jsx';
+import Twin_bed from '../twinBedCards/twinBedCards.jsx';
 import Doublebed_cards from '../doubleBedCards/doubleBedCard.jsx';
-
-
-
+import Nature_cards from '../naturecard/nature.jsx';
 const Allcards = () => {
-const [activeTab, setActiveTab] = useState("all");
-
+  const [activeTab, setActiveTab] = useState("all");
 
   return (
-    <div className={style.main_container}>
-      
-      <div className={style.btn_container}>
-        <button className={`${style.btn} ${activeTab === "all" ? style.active : ""}`} onClick={() => setActiveTab("all")}>All</button>
-        <button className={`${style.btn} ${activeTab === "twin" ? style.active : ""}`} onClick={() => setActiveTab("twin")}>Twin Bed</button>
-        <button className={`${style.btn} ${activeTab === "double" ? style.active : ""}`}   onClick={() => setActiveTab("double")}>Double Bed</button>
+    <section className={style.gallery}>
+
+      {/* HEADER */}
+      <div className={style.header}>
+      <h2>Our Gallery</h2>
+<p>Discover the beauty and serenity of our resort</p>
+        <p>Explore the beauty of our resort</p>
       </div>
-      
-  
-      {/* ALL → show everything */}
-{activeTab === "all" && (
-  <div className={style.condition_container}>
-    <div className={style.triangle_all}></div>
-    <All/>
-    <Twin_bed />
-    <Doublebed_cards />
-  </div>
-)}
 
-{/* TWIN ONLY */}
-{activeTab === "twin" && (
-  <div className={style.condition_container}>
-    <div className={style.triangle_twin}></div>
-    <Twin_bed />
-  </div>
-)}
+      {/* FILTER BUTTONS */}
+      <div className={style.filters}>
+        <button
+          className={activeTab === "all" ? style.active : ""}
+          onClick={() => setActiveTab("all")}
+        >
+          All
+        </button>
 
-{/* DOUBLE ONLY */}
-{activeTab === "double" && (
-  <div className={style.condition_container}>
-     <div className={style.triangle_double}></div>
-    <Doublebed_cards />
-  </div>
-)}
+        <button
+          className={activeTab === "twin" ? style.active : ""}
+          onClick={() => setActiveTab("twin")}
+        >
+          Twin Rooms
+        </button>
 
-  </div>
-  )
-}
+        <button
+          className={activeTab === "double" ? style.active : ""}
+          onClick={() => setActiveTab("double")}
+        >
+          Double Rooms
+        </button>
+         
+        <button
+  className={activeTab === "nature" ? style.active : ""}
+  onClick={() => setActiveTab("nature")}
+>
+  Experience the Resort
+</button>
+      </div>
 
-export default Allcards
+      {/* IMAGES */}
+      <div className={style.grid}>
+
+        {activeTab === "all" && (
+          <>
+            <All />
+            <Twin_bed />
+            <Doublebed_cards />
+          </>
+        )}
+
+        {activeTab === "twin" && <Twin_bed />}
+        {activeTab === "double" && <Doublebed_cards />}
+        {activeTab === "nature" && <Nature_cards />}
+      </div>
+
+    </section>
+  );
+};
+
+export default Allcards;

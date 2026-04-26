@@ -5,7 +5,7 @@ import Hero from '../herosection.jsx'
 import Booking_Form from './form/booking_form.jsx'
 import Footer from '../Footer.jsx'
 import SeoHelmet from '../seoHelmet.jsx'
-
+import Herosection from '../herosection.jsx'
 const Book_now = () => {
  
   return (
@@ -18,7 +18,11 @@ const Book_now = () => {
       />
       {/* <Top /> */}
       <Nav_bar />
-      <Hero h1="Booking" tab="Home" p="Booking" bg="images/background/1.webp" />
+      <Herosection 
+  h1="Booking Form" 
+ 
+  bg="images/about/SudarshanAbout.webp"
+/>
       <Booking_Form />
       <Footer/>
     </div>

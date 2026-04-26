@@ -1,6 +1,88 @@
-.homecontainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow-x: hidden;
+.homecontainer {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* 🔥 GLOBAL SECTION SYSTEM */
+.section_white {
+  padding: 120px 10%;
+  background: #ffffff;
+}
+
+.section_light {
+  padding: 120px 10%;
+
+  /* ✨ soft resort gradient */
+  background: linear-gradient(
+    to bottom,
+    #ffffff,
+    #f9f9f7
+  );
+}
+
+.section_soft {
+  padding: 120px 10%;
+
+  background: linear-gradient(
+    to bottom,
+    #f9f9f7,
+    #f3f5f2
+  );
+}
+
+/* 🌿 DARK EXPERIENCE SECTION */
+.section_dark {
+  padding: 120px 10%;
+
+  background: linear-gradient(
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.6)
+  ),
+  url("/images/home/transparentbg/1.webp");
+
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+/* ✨ SMOOTH TRANSITION FEEL */
+.section_white,
+.section_light,
+.section_soft {
+  position: relative;
+}
+
+/* subtle divider effect */
+.section_white::before,
+.section_light::before,
+.section_soft::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: #c19b76;
+  opacity: 0.3;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .section_white,
+  .section_light,
+  .section_soft,
+  .section_dark {
+    padding: 90px 6%;
+  }
+}
+
+@media (max-width: 768px) {
+  .section_white,
+  .section_light,
+  .section_soft,
+  .section_dark {
+    padding: 70px 20px;
+  }
 }

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import style from "./filter.module.css";
 import { ChevronDown } from "lucide-react";
@@ -39,18 +40,22 @@ const FilterDropdown = ({
 
       {/* BOX */}
       <div
-        className={style.dropdownBox}
-        onClick={() => setOpen(prev => !prev)}  
-      >
-        {form?.[id] ? (
-          <span>{form[id]}</span>
-        ) : (
-          <span className={style.placeholder}>Select...</span>
-        )}
+  className={`${style.dropdownBox} ${open ? style.open : ""} ${
+    errors?.[id] ? style.error : ""
+  }`}
+  onClick={() => setOpen(prev => !prev)}
+>
+  {form?.[id] ? (
+    <span>{form[id]}</span>
+  ) : (
+    <span className={style.placeholder}>Select...</span>
+  )}
 
-        <ChevronDown size={18} />
-      </div>
-
+  <ChevronDown
+    size={18}
+    className={`${style.icon} ${open ? style.rotate : ""}`}
+  />
+</div>
       {/* LIST */}
       {open && (
         <div className={style.dropdownList}>

@@ -1,155 +1,126 @@
-
-.aboutus_container {
+/* MAIN CONTAINER */
+.container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 60px 21px;
- 
-  
-  
+  align-items: center;
+  justify-content: center;
+  padding: 160px 10%;
+  position: relative;
+  gap: 40px;
 }
-.line {
-  width: 50px;
+
+/* IMAGE SIDE */
+.image_side {
+  flex: 1;
+  position: relative;
+}
+
+.image_side img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: 12px;
+
+  /* ✨ luxury shadow */
+  box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+
+  transform: translateX(-40px);
+}
+
+/* TEXT SIDE */
+.text_side {
+  flex: 1;
+  background: white;
+  padding: 70px;
+  border-radius: 12px;
+
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+
+  transform: translateX(-100px);
+}
+
+/* SMALL TAG */
+.tag {
+  color: #c19b76;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+/* HEADING */
+.text_side h2 {
+  font-size: 44px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  font-family: "Playfair Display";
+  color: #222;
+}
+
+/* BIG TEXT */
+.main_text {
+  font-size: 22px;
+  line-height: 32px;
+  color: #444;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+/* PARAGRAPH */
+.text_side p {
+  font-size: 16px;
+  line-height: 26px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+/* ✨ DECORATIVE LINE */
+.text_side::before {
+  content: "";
+  width: 60px;
   height: 2px;
-  background-color: green;
-  margin-left: 20.5%;
-  margin-top: 10px;
+  background: #c19b76;
+  display: block;
   margin-bottom: 20px;
 }
-.aboutus_container h1 {
-  color: black;
-  font-size: 40px;
-  font-weight: 600;
-  margin-left: 20.5%;
-  margin-top: 40px;
-}
-.content_p {
-  font-size: 20px;
-  color: #555555;
-  width: 80%;
-  text-align: justify;
-  line-height: 1.6;
-}
-.aboutus_content_and_img {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-.aboutus_content {
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column;
-  width: 50%;
-  height: auto;
-  margin-right: 5px;
-  height: auto;
-  gap: 20px;
-}
-.img1 {
-  width: 500px;
-  height: auto;
-  border-radius: 10px;
-}
 
-
-
-/* mobile responsive */
-@media screen and (max-width: 480px) {
-  .aboutus_container {
-  justify-content: flex-start;
-
-  /* background-color: red; */
-
-}
-.aboutus_content_and_img {
-  /* background-color: red; */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  /* gap: 20px; */
-}
-.aboutus_content {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  width: fit-content;
-  margin-right: 0;
-  gap: 1px;
-  /* background-color: yellow; */
-}
-.content_p {
-  width: fit-content;
- 
-}
-.aboutus_container h1,.line  {
-  margin-left: 0;
- 
-}
-.img1 {
-  width: 320px;
-}
-}
-
-/* Tablet */
+/* RESPONSIVE */
 @media (max-width: 1024px) {
-  .aboutus_container {
-    padding: 50px 15px;
+  .container {
+    padding: 120px 8%;
   }
-  .line {
-    margin-left: 15%;
+
+  .text_side {
+    padding: 50px;
   }
-  .aboutus_container h1 {
-    font-size: 35px;
-    margin-left: 15%;
-    margin-top: 30px;
-  }
-  .content_p {
-    font-size: 18px;
-    width: 85%;
-  }
-  .aboutus_content_and_img {
-    gap: 15px;
-  }
-  .aboutus_content {
-    width: 55%;
-    margin-right: 0;
-    gap: 15px;
-  }
-  .img1 {
-    width: 400px;
+
+  .text_side h2 {
+    font-size: 36px;
   }
 }
 
-/* Mobile improved */
 @media (max-width: 768px) {
-  .aboutus_container {
-    padding: 40px 10px;
-    justify-content: flex-start;
-  }
-  .aboutus_container h1 {
-    font-size: 28px;
-    margin-left: 0;
-    margin-top: 20px;
-  }
-  .line {
-    margin-left: 0;
-  }
-  .content_p {
-    font-size: 16px;
-    width: 100%;
-    text-align: left;
-  }
-  .aboutus_content_and_img {
+  .container {
     flex-direction: column;
-    gap: 10px;
+    padding: 80px 20px;
   }
-  .aboutus_content {
-    align-items: flex-start;
-    width: 100%;
-    gap: 10px;
+
+  .image_side img {
+    transform: none;
+    height: 300px;
   }
-  .img1 {
-    width: 100%;
-    max-width: 320px;
+
+  .text_side {
+    transform: none;
+    margin-top: -60px;
+    padding: 30px;
+  }
+
+  .text_side h2 {
+    font-size: 28px;
+  }
+
+  .main_text {
+    font-size: 18px;
   }
 }

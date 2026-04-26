@@ -20,7 +20,12 @@ const Gallery = () => {
       
       {/* <Top/> */}
       <Navbar/>
-      <Herosection h1="Gallery" tab="Home" p="Gallery" bg="images/background/1.webp"/>
+     <Herosection 
+  h1="Gallery" 
+  tab="Service" 
+  p="Gallery"
+  bg="images/about/SudarshanAbout.webp"
+/>
       <Allcards/>
       <Footer/>
       

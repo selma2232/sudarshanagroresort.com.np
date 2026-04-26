@@ -1,22 +1,44 @@
+import style from './aboutUs.module.css';
 
-import style from './aboutUs.module.css'
 const Aboutus = () => {
   return (
-  
-       <div className={style.aboutus_container}>
-        <h1>About Us</h1>
-        <div className={style.line}></div>
-        <div className={style.aboutus_content_and_img}>
-          <div className={style.aboutus_content}>
-          <p className={style.content_p}>Welcome to Sudarshan Park and Resort, your ultimate destination for relaxation and cultural immersion in Nepali style. Nestled in the heart of lush greenery, our resort offers a serene escape where you can enjoy authentic Nepali cuisine, comfortable accommodations, and vibrant cultural experiences. </p>
-            <p className={style.content_p}>
-            At Sudarshan Park and Resort, we take pride in serving the finest traditional Nepali dishes at affordable prices.</p>
-            </div>
-          <img src="images/about/SudarshanAbout.webp" className={style.img1} alt="aboutimg" />
-        </div>
-      </div>
-    
-  )
-}
+    <section className={style.container}>
 
-export default Aboutus
+      {/* IMAGE */}
+      <div className={style.image_side}>
+        <img 
+          src="images/about/SudarshanAbout.webp" 
+          alt="Sudarshan Agro Resort"
+        />
+      </div>
+
+      {/* TEXT */}
+      <div className={style.text_side}>
+
+        <span className={style.tag}>Our Story</span>
+
+        <h2>
+          Experience Nature <br /> Like Never Before
+        </h2>
+
+        <p className={style.main_text}>
+          A peaceful retreat where nature, comfort, and culture come together.
+        </p>
+
+        <p>
+          Sudarshan Agro Resort offers a calm escape surrounded by greenery,
+          designed for relaxation and meaningful experiences.
+        </p>
+
+        <p>
+          From authentic local cuisine to serene landscapes, every moment is
+          crafted to feel natural, warm, and unforgettable.
+        </p>
+
+      </div>
+
+    </section>
+  );
+};
+
+export default Aboutus;
