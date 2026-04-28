@@ -18,30 +18,31 @@ const App = () => {
       <ScrollToTop />
       <main>
         <h1 className="sr-only">Sudarshan Agro Resort</h1>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          {/* Splash */}
-          <Route path="/splash" element={<Starting_Page />} />
+     <Suspense
+  fallback={
+    <div role="status" aria-live="polite">
+      Loading...
+    </div>
+  }
+>
+  <Routes>
+    <Route path="/splash" element={<Starting_Page />} />
 
-          {}
-          <Route index element={<Home />} />
+    <Route index element={<Home />} />
 
-         
-       <Route path="/home" element={<Navigate to="/" replace />} />
+    <Route path="/home" element={<Navigate to="/" replace />} />
 
-          {/* Other pages */}
-          <Route path="/about" element={<About />} />
-          <Route path="/rooms" element={<Room />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/book" element={<Book_Now />} />
-          <Route path="/qr" element={<QRm />} />
+    <Route path="/about" element={<About />} />
+<Route path="/rooms" element={<Room />} />
+    <Route path="/services" element={<Services />} />
+    <Route path="/gallery" element={<Gallery />} />
+    <Route path="/contact" element={<Contact />} />
+    <Route path="/book" element={<Book_Now />} />
+    <Route path="/qr" element={<QRm />} />
 
-          {/* ✅ Only ONE wildcard */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Suspense>
+    <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+  </Routes>
+</Suspense>
       </main>
     </>
   )

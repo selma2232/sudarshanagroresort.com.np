@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import emailjs from "@emailjs/browser";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import emailjs from "@emailjs/browser";
 
 import style from "./booking_form.module.css";
 import FilterDropdown from "./filter";
@@ -12,6 +12,7 @@ const Booking_form = () => {
 
   const [form, setForm] = useState({
     fullname: "",
+    email: "",
     phone: "",
     number: "",
     room_type: "",
@@ -24,7 +25,7 @@ const Booking_form = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
-    emailjs.init("4ufjEe2FuYXd9ArD0");
+    emailjs.init("fn-kr1dma-v26TXtl"); // ✅ your public key
   }, []);
 
   const roomPrices = {
@@ -49,6 +50,10 @@ const Booking_form = () => {
     return d.toISOString().split("T")[0];
   };
 
+  const formatDate = (date) => {
+    return date ? date.toISOString().split("T")[0] : "";
+  };
+
   const totalPrice =
     (roomPrices[form.room_type] || 0) *
     Number(form.room_quantity || 1) *
@@ -57,26 +62,73 @@ const Booking_form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // 🚨 basic validation
+    if (!form.email || !form.fullname) {
+      alert("Please fill required fields");
+      return;
+    }
+
     try {
+      // ✅ 1. Send to Formspree
+      const res = await fetch("https://formspree.io/f/xaqazpno", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          fullname: form.fullname,
+          email: form.email,
+          phone: form.phone,
+          guests: form.number,
+          room_type: form.room_type,
+          room_quantity: form.room_quantity,
+          stay: form.stay,
+          checkin: formatDate(form.arrival_date), // ✅ FIXED
+          checkout: checkoutDate(),
+          total: totalPrice,
+          message: form.message
+        })
+      });
+
+      if (!res.ok) {
+        throw new Error("Formspree failed");
+      }
+
+      // ✅ 2. Send EmailJS
       await emailjs.send(
-        "service_v4mqblp",
-        "template_ri2ns9r",
+        "service_jfkkf89",
+        "template_jj0zjye", // ⚠️ make sure this exists
         {
           fullname: form.fullname,
-          phone: form.phone,
+          email: form.email,
           room_type: form.room_type,
-          total: totalPrice,
-          arrival: form.arrival_date,
+          checkin: formatDate(form.arrival_date),
           checkout: checkoutDate(),
-          message: form.message
+          total: totalPrice
         }
       );
 
+      // ✅ success
       setIsSubmitted(true);
       setStep(1);
 
-    } catch {
-      alert("Booking failed");
+      setForm({
+        fullname: "",
+        email: "",
+        phone: "",
+        number: "",
+        room_type: "",
+        room_quantity: "1",
+        arrival_date: null,
+        stay: "1 Day",
+        message: ""
+      });
+ 
+
+    } catch (error) {
+      console.error("ERROR:", error);
+      alert("Booking failed — check console");
     }
   };
 
@@ -94,7 +146,6 @@ const Booking_form = () => {
   return (
     <div className={style.container}>
 
-      {/* 🔥 HEADER */}
       <div className={style.header}>
         <h1>Resort Booking Form</h1>
         <p>Booking at your fingertips.</p>
@@ -102,29 +153,38 @@ const Booking_form = () => {
 
       <form className={style.form} onSubmit={handleSubmit}>
 
-        {/* STEP INDICATOR */}
         <div className={style.stepIndicator}>
           <span className={step === 1 ? style.active : ""}>1</span>
           <span className={step === 2 ? style.active : ""}>2</span>
           <span className={step === 3 ? style.active : ""}>3</span>
         </div>
 
-        {/* STEP 1 */}
         {step === 1 && (
           <div className={style.section}>
             <h2>Guest Info</h2>
 
             <div className={style.gridForm}>
+                  <div className={style.floatingField}>
+              <input required value={form.fullname}
+                onChange={(e) => setForm({ ...form, fullname: e.target.value })} />
+   <input required type="email" value={form.email}
+              
+                onChange={(e) => setForm({ ...form, email: e.target.value })} />
+
+             
+                <label>Full Name</label>
+              </div>
 
               <div className={style.floatingField}>
                 <input
                   required
-                  value={form.fullname}
+                  type="email"
+                  value={form.email}
                   onChange={(e) =>
-                    setForm({ ...form, fullname: e.target.value })
+                    setForm({ ...form, email: e.target.value })
                   }
                 />
-                <label>Full Name</label>
+                <label>Email</label>
               </div>
 
               <div className={style.floatingField}>
@@ -152,23 +212,14 @@ const Booking_form = () => {
 
             </div>
 
-            <button
-              type="button"
-              className={style.primaryBtn}
-              onClick={() => setStep(2)}
-            >
-              Next →
-            </button>
+            <button type="button" className={style.primaryBtn} onClick={() => setStep(2)}>Next →</button>
           </div>
         )}
 
-        {/* STEP 2 */}
         {step === 2 && (
           <div className={style.section}>
             <h2>Booking Details</h2>
-
-            <div className={style.gridForm}>
-
+  <div className={style.gridForm}>
               <FilterDropdown label="Room Type" id="room_type" options={roomType} form={form} setForm={setForm} />
               <FilterDropdown label="Rooms" id="room_quantity" options={roomQuantity} form={form} setForm={setForm} />
 
@@ -186,7 +237,6 @@ const Booking_form = () => {
               </div>
 
               <FilterDropdown label="Stay" id="stay" options={stayOptions} form={form} setForm={setForm} />
-
             </div>
 
             <div className={style.stepActions}>
@@ -196,30 +246,24 @@ const Booking_form = () => {
           </div>
         )}
 
-        {/* STEP 3 */}
         {step === 3 && (
           <div className={style.section}>
             <h2>Confirm Booking</h2>
-
-            <div className={style.summary}>
+ <div className={style.summary}>
               <p><strong>Room:</strong> {form.room_type}</p>
               <p><strong>Rooms:</strong> {form.room_quantity}</p>
               <p><strong>Stay:</strong> {form.stay}</p>
               <p><strong>Check-in:</strong> {form.arrival_date?.toDateString()}</p>
               <p><strong>Check-out:</strong> {checkoutDate()}</p>
-
-              <h3>Total: NPR {totalPrice}</h3>
-            </div>
-
+            <h3>Total: NPR {totalPrice}</h3>
+  </div>
             <textarea
-              placeholder="Any special requests..."
+               placeholder="Any special requests..."
               value={form.message}
-              onChange={(e) =>
-                setForm({ ...form, message: e.target.value })
-              }
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
             />
 
-            <div className={style.stepActions}>
+             <div className={style.stepActions}>
               <button type="button" onClick={() => setStep(2)}>← Back</button>
               <button type="submit" className={style.primaryBtn}>
                 Confirm Booking
@@ -230,7 +274,7 @@ const Booking_form = () => {
 
       </form>
 
-      {isSubmitted && <p className={style.success}>Booking sent ✅</p>}
+      {isSubmitted &&  <p className={style.success}>Booking sent ✅</p>}
     </div>
   );
 };
