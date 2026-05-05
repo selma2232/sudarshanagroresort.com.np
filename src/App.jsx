@@ -1,7 +1,8 @@
 import React, { Suspense } from 'react'
-import { Routes, Route,Navigate  } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import ScrollToTop from "./components/scrolltop.jsx";
 import QRm from './components/qr/QRm.jsx';
+import Schema from "./components/seo/schema.jsx";
 
 const Starting_Page = React.lazy(() => import('./components/Starting_Page.jsx'));
 const Home = React.lazy(() => import('./components/home/home.jsx'));
@@ -15,34 +16,39 @@ const Book_Now = React.lazy(() => import('./components/bookNow/book_now.jsx'));
 const App = () => {
   return (
     <>
+     
+      <Schema />
+
       <ScrollToTop />
+
       <main>
         <h1 className="sr-only">Sudarshan Agro Resort</h1>
-     <Suspense
-  fallback={
-    <div role="status" aria-live="polite">
-      Loading...
-    </div>
-  }
->
-  <Routes>
-    <Route path="/splash" element={<Starting_Page />} />
 
-    <Route index element={<Home />} />
+        <Suspense
+          fallback={
+            <div role="status" aria-live="polite">
+              Loading...
+            </div>
+          }
+        >
+          <Routes>
+            <Route path="/splash" element={<Starting_Page />} />
 
-    <Route path="/home" element={<Navigate to="/" replace />} />
+            <Route index element={<Home />} />
 
-    <Route path="/about" element={<About />} />
-<Route path="/rooms" element={<Room />} />
-    <Route path="/services" element={<Services />} />
-    <Route path="/gallery" element={<Gallery />} />
-    <Route path="/contact" element={<Contact />} />
-    <Route path="/book" element={<Book_Now />} />
-    <Route path="/qr" element={<QRm />} />
+            <Route path="/home" element={<Navigate to="/" replace />} />
 
-    <Route path="*" element={<h1>404 - Page Not Found</h1>} />
-  </Routes>
-</Suspense>
+            <Route path="/about" element={<About />} />
+            <Route path="/rooms" element={<Room />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/book" element={<Book_Now />} />
+            <Route path="/qr" element={<QRm />} />
+
+            <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+          </Routes>
+        </Suspense>
       </main>
     </>
   )

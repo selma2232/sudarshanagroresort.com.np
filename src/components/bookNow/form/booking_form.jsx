@@ -167,10 +167,7 @@ const Booking_form = () => {
                   <div className={style.floatingField}>
               <input required value={form.fullname}
                 onChange={(e) => setForm({ ...form, fullname: e.target.value })} />
-   <input required type="email" value={form.email}
-              
-                onChange={(e) => setForm({ ...form, email: e.target.value })} />
-
+  
              
                 <label>Full Name</label>
               </div>
